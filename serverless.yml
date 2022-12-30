@@ -1,0 +1,37 @@
+service: quno-backend-challenge
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: eu-central-1
+
+custom:
+  resourceRoutes: true
+
+plugins:
+  - serverless-offline
+
+functions:
+  getDoctors:
+    name: getDoctors
+    handler: dist/doctors.getDoctors
+    memorySize: 128
+    timeout: 10
+    environment:
+    events:
+      - http:
+          path: /{name}
+          method: GET
+      - http:
+          path: /
+          method: GET
+  createDoctor:
+    name: hello-world
+    handler: dist/doctors.createDoctor
+    memorySize: 128
+    timeout: 10
+    environment:
+    events:
+      - http:
+          path: /create
+          method: post
