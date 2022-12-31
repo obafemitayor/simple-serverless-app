@@ -13,21 +13,21 @@ plugins:
 
 functions:
   getDoctors:
-    name: getDoctors
+    name: get doctors
     handler: dist/doctors.getDoctors
     memorySize: 128
     timeout: 10
     environment:
     events:
       - http:
-          path: /{name}
+          path: /{id}
           method: GET
       - http:
           path: /
           method: GET
-  createDoctor:
-    name: hello-world
-    handler: dist/doctors.createDoctor
+  postDoctor:
+    name: post doctor
+    handler: dist/doctors.postDoctor
     memorySize: 128
     timeout: 10
     environment:
@@ -35,3 +35,12 @@ functions:
       - http:
           path: /create
           method: post
+  createDoctor:
+    handler: dist/createDoctorHandler.createDoctor
+    events:
+      - sns: create-doctor-topic # created immediately
+    onError: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:dlq-topic
+  error:
+    handler: dist/error.handler
+    events:
+      - sns: dlq-topic # created immediately
