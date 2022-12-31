@@ -1,30 +1,21 @@
 import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
 import { DoctorRepository } from "./doctorRepo";
-import { PostgreSQLProvider } from "./databaseProvider";
-import { DoctorModel } from "./models/doctor";
+import { ValidationError } from "./validationError";
 
 export async function getDoctors(
   event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const databaseProvider = new PostgreSQLProvider()
-    const doctorRepo = new DoctorRepository(databaseProvider)
-    let doctors : DoctorModel | DoctorModel[]
-    if(event.pathParameters?.id){
-      doctors = await doctorRepo.getDoctor(Number(event.pathParameters?.limit),Number(event.pathParameters?.offset),Number(event.pathParameters?.orderby), Number(event.pathParameters?.id))
-    }
-    else{
-      doctors = await doctorRepo.getDoctor(Number(event.pathParameters?.limit),Number(event.pathParameters?.offset),Number(event.pathParameters?.orderby))
-    }
-    
+    const doctorRepo = new DoctorRepository()
+    const response = await doctorRepo.getDoctor(event.pathParameters)
     return {
-      statusCode: 200,
-      body: JSON.stringify(doctors),
+      statusCode: response.statusCode,
+      body: JSON.stringify(response.doctors),
     };
-  } catch (error: any) {
+  } catch (error) {
     return {
-      statusCode: error.statusCode ? error.statusCode : 500,
-      body: error.message ? error.message : 'An Error Occurred, Contact Admin',
+      statusCode: error instanceof ValidationError ? error.statusCode : 500,
+      body: error instanceof ValidationError ? error.message : 'An Error Occurred, Contact Admin',
     };
   }
 }
@@ -33,19 +24,18 @@ export async function postDoctor(
   event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const databaseProvider = new PostgreSQLProvider()
+    const databaseProvider = new PostgreSQLDatabaseProvider()
     const doctorRepo = new DoctorRepository(databaseProvider)
     const body = event.body as string
-    const doctorPayload = JSON.parse(body) as DoctorModel
-    doctorRepo.createDoctor(doctorPayload)
+    const response = await doctorRepo.createDoctor(body)
     return {
-      statusCode: 202,
-      body: `The doctor is now being created`,
+      statusCode: response.statusCode,
+      body: response.message,
     };
-  } catch (error: any) {
+  } catch (error) {
     return {
-      statusCode: error.statusCode ? error.statusCode : 500,
-      body: error.message ? error.message : 'An Error Occurred, Contact Admin',
+      statusCode: error instanceof ValidationError ? error.statusCode : 500,
+      body: error instanceof ValidationError ? error.message : 'An Error Occurred, Contact Admin',
     };
   }
 }

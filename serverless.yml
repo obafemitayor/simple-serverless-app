@@ -36,7 +36,7 @@ functions:
           path: /create
           method: post
   createDoctor:
-    handler: dist/createDoctorHandler.createDoctor
+    handler: dist/createdoctor.create
     events:
       - sns: create-doctor-topic # created immediately
     onError: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:dlq-topic

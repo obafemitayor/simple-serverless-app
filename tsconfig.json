@@ -19,7 +19,8 @@
         "alwaysStrict": true,
         "outDir": "./dist",
         "rootDir": "src/",
-        "tsBuildInfoFile": "./dist/.tsbuildinfo"
+        "tsBuildInfoFile": "./dist/.tsbuildinfo",
+        "resolveJsonModule": true
     },
     "include": [
         "src/**/*"
