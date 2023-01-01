@@ -35,23 +35,22 @@ export class DoctorRepository{
 
      protected validateCreateDoctorFields(requestBody: string) : PostDoctorModel{
         const doctorPayload = JSON.parse(requestBody)
-        if(!isNaN(doctorPayload.quno_score_number)){
+        if(!this.isNumber(doctorPayload.quno_score_number)){
          throw new ValidationError(400, 'quno score number must be a number')
         }
-
-        if(!isNaN(doctorPayload.ratings_average)){
+        if(!this.isNumber(doctorPayload.ratings_average)){
          throw new ValidationError(400, 'ratings average score must be a number')
         }
 
-        if(!isNaN(doctorPayload.treatments_last_year)){
+        if(!this.isNumber(doctorPayload.treatments_last_year)){
          throw new ValidationError(400, 'treatments last year must be a number')
         }
 
-        if(!isNaN(doctorPayload.years_experience)){
+        if(!this.isNumber(doctorPayload.years_experience)){
          throw new ValidationError(400, 'years of experience must be a number')
         }
 
-        if(!isNaN(doctorPayload.base_price)){
+        if(!this.isNumber(doctorPayload.base_price)){
          throw new ValidationError(400, 'base price must be a number')
         }
 
@@ -72,23 +71,34 @@ export class DoctorRepository{
         return doctor
      }
 
+     private isNumber(str: string): boolean {
+      if (typeof str === 'string') {
+        str = str.trim()
+      }
+      if (str === '') {
+         return false;
+      }
+      return !isNaN(Number(str));
+    }
+
      private validateGetDoctorFields(limit?: string | undefined, offset?: string | undefined, orderBy?: string | undefined, id?: string | undefined){
-      if(limit && !isNaN(Number(limit))){
+      if(limit && !this.isNumber(limit)){
          throw new ValidationError(400, 'Limit must be a Number')
       }
 
-      if(offset && !isNaN(Number(offset))){
+      if(offset && !this.isNumber(offset)){
          throw new ValidationError(400, 'Offset must be a Number')
       }
-
-      if(orderBy && !isNaN(Number(orderBy))){
+      
+      if(orderBy && !this.isNumber(orderBy)){
          throw new ValidationError(400, 'orderBy must be a Number')
       }
-      else if(Number(orderBy) !== 1 || Number(orderBy) !== -(1)){
+
+      if(orderBy && (Number(orderBy) !== 1 && Number(orderBy) !== -(1))){
          throw new ValidationError(400, 'orderBy must either be a 1 or -1')
       }
 
-      if(id && !isNaN(Number(id))){
+      if(id && !this.isNumber(id)){
          throw new ValidationError(400, 'id must be a number')
       }
    }

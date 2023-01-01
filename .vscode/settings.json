@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.env.windows": 
+    {
+        "JEST_TOKEN": "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6MTYyMDA3MjQ0NjQ1MywidHlwZSI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2FwaS1pbnQtZGV2Lm1lZGFibGUuY29tL3RheW8vdjIiLCJpc3MiOiJURURod1kwRXV5WUNVVWszRmdXN1dxIiwiaWF0IjoxNjIwMjI5NDQ3LCJjb3J0ZXgvc2NwIjpbIioiXSwianRpIjoiNjA5MmJkNDc0N2JkZjQwMTAwZGVmMTJkIiwic3ViIjoiNjA5MDA0OTkxNDU5N2UwMTAwMzExMWM4IiwiY29ydGV4L2VtbCI6Im9vbW90YXlvX2FuZGVsYUBtZWRhYmxlLmNvbSJ9.n3rXq6BSm_OkLQw0yTOq1l0N8qFzcJ9UvWmqt0Blk54QkRg9N8ikYHdE8zNW6TTmJx1N-IE19S4Q5TP9tyd-PvSdOHywB8mbiT3jaqqNoZSrVlizsR-Hlx46_EeQOFdft8cW9IXurhM4GtdMjpE471b6jHOpXk4aSeGk9NVTsF_aX8btNqV-GssvG0zNlYxt454sC3jhnflUOk6eBJII3emCMKByg1KKK0ylCqR7nctVs--Br_7Tx_nri9aLJ66m91qKvAMTzngfRfKtkXNA7m1cXA7nqIZbke_-GGtFo4GvQ7P6LARw87KOKW3PFgCYJCyssecdXPUq9uci2oWZXQ",
+        "JEST_API_KEY": "c_axon_demo_app",
+        "JEST_ENV": "tayo"
+    }
+}

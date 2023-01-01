@@ -2,11 +2,12 @@ import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
 import { DoctorRepository } from "./doctorRepo";
 import { ValidationError } from "./validationError";
 
+const doctorRepo = new DoctorRepository()
+
 export async function getDoctors(
   event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const doctorRepo = new DoctorRepository()
     const response = await doctorRepo.getDoctor(event.pathParameters)
     return {
       statusCode: response.statusCode,
@@ -24,13 +25,11 @@ export async function postDoctor(
   event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const databaseProvider = new PostgreSQLDatabaseProvider()
-    const doctorRepo = new DoctorRepository(databaseProvider)
     const body = event.body as string
     const response = await doctorRepo.createDoctor(body)
     return {
       statusCode: response.statusCode,
-      body: response.message,
+      body: response.message as string,
     };
   } catch (error) {
     return {

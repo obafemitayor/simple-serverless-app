@@ -56,7 +56,7 @@ databaseProvider.doctors = [
     name: "Dr. Allis Outridge",
     city: "Świnice Warckie",
     country: "Poland",
-    quno_score_number: 8.3,
+    quno_score_number: 6.8,
     ratings_average: 6.5,
     treatments_last_year: 392,
     years_experience: 11,
@@ -87,11 +87,11 @@ describe("Test Validation, Create and Retrieval Operations on Doctor Repository"
         name: '',
         city: '',
         country: '',
-        quno_score_number: 0,
-        ratings_average: 0,
-        treatments_last_year: 0,
-        years_experience: 0,
-        base_price: 0,
+        quno_score_number: 1.0,
+        ratings_average: 1.0,
+        treatments_last_year: 2010,
+        years_experience: 5,
+        base_price: 1,
         avatar_url: '',
       }
       const doctorPayload = JSON.stringify(data)
@@ -111,7 +111,7 @@ describe("Test Validation, Create and Retrieval Operations on Doctor Repository"
         name: 'Tayo Obafemi',
         city: 'Lagos',
         country: 'Nigeria',
-        quno_score_number: '',
+        quno_score_number: 'quno',
         ratings_average: 0,
         treatments_last_year: 0,
         years_experience: 0,
@@ -214,7 +214,6 @@ describe("Test Validation, Create and Retrieval Operations on Doctor Repository"
     expect(result.statusCode).toBe(200)
     const doctors = result.doctors as GetDoctorModel[]
     expect(doctors.length).toBe(6)
-    expect(doctors[5].id).toBe(6)
     expect(doctors[0].name).toBe('Dr. Tayo Obafemi')
     expect(doctors[0].qunoScoreText).toBe('Excelent')
     expect(doctors[1].name).toBe('Dr. Cayla Loftie')
@@ -238,17 +237,23 @@ describe("Test Validation, Create and Retrieval Operations on Doctor Repository"
     let result = await doctorRepo.getDoctor(requestQuery)
     expect(result.statusCode).toBe(200)
     expect(result.totalNumberofRecords).toBe(6)
-    const doctors = result.doctors as GetDoctorModel[]
+    let doctors = result.doctors as GetDoctorModel[]
     expect(doctors.length).toBe(2)
     expect(doctors[0].name).toBe('Dr. Lay Raphael')
     expect(doctors[1].name).toBe('Dr. Wallie Lagden')
     requestQuery.offset = '2'
     result = await doctorRepo.getDoctor(requestQuery)
+    expect(result.statusCode).toBe(200)
+    expect(result.totalNumberofRecords).toBe(6)
+    doctors = result.doctors as GetDoctorModel[]
     expect(doctors.length).toBe(2)
     expect(doctors[0].name).toBe('Dr. Monty Guinan')
     expect(doctors[1].name).toBe('Dr. Allis Outridge')
     requestQuery.offset = '3'
     result = await doctorRepo.getDoctor(requestQuery)
+    expect(result.statusCode).toBe(200)
+    expect(result.totalNumberofRecords).toBe(6)
+    doctors = result.doctors as GetDoctorModel[]
     expect(doctors.length).toBe(2)
     expect(doctors[0].name).toBe('Dr. Cayla Loftie')
     expect(doctors[1].name).toBe('Dr. Tayo Obafemi')

@@ -4,7 +4,7 @@ import { PostDoctorModel, GetDoctorModel, QuonoScoreMappingModel } from "./model
 const PgConnection = require('postgresql-easy');
 
 const getqunoScoreNumber = (doctors : GetDoctorModel[]) : GetDoctorModel[] => {
-  const qunoScoreMapping = process.env.QUNO_SCORE_MAPPING as unknown as QuonoScoreMappingModel
+  const qunoScoreMapping = JSON.parse(process.env.QUNO_SCORE_MAPPING as string)  as QuonoScoreMappingModel
   doctors.forEach(doctor => {
     const qunoScoreNumber = ~~doctor.quno_score_number
     const qunoScore = qunoScoreNumber < 6 ? 0 : qunoScoreNumber === 10 ? 9 : qunoScoreNumber
