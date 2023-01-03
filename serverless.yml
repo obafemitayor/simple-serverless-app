@@ -2,12 +2,12 @@ service: quno-backend-challenge
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   region: eu-central-1
   memorySize: 128
   environment:
-    accountId: '#{AWS::AccountId}'
-    region: '#{AWS::Region}'
+    accountId: '${AWS::AccountId}'
+    region: '${AWS::Region}'
   iamRoleStatements:
     - Effect: "Allow"
       Resource: "*"
@@ -22,34 +22,35 @@ plugins:
 
 functions:
   getDoctors:
-    name: get doctors
-    handler: dist/doctors.getDoctors
+    name: getdoctors
+    handler: dist/handlers/doctors.getDoctors
     memorySize: 128
     timeout: 10
     environment:
     events:
       - http:
-          path: /{id}
+          path: /doctors
           method: GET
       - http:
-          path: /
+          path: /doctors/{id}
           method: GET
   postDoctor:
-    name: post doctor
-    handler: dist/doctors.postDoctor
+    name: postdoctor
+    handler: dist/handlers/doctors.postDoctor
     memorySize: 128
     timeout: 10
     environment:
     events:
       - http:
-          path: /
+          path: /doctors
           method: POST
-  createDoctor:
-    handler: dist/createdoctor.create
-    events:
-      - sns: create-doctor-topic # created immediately
-    onError: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:dlq-topic
   error:
-    handler: dist/error.handler
+    handler: dist/handlers/error.handler
     events:
-      - sns: dlq-topic # created immediately
+      - sns: dlq-topic
+  createDoctor:
+    handler: dist/handlers/createdoctor.create
+    events:
+      - sns: create-doctor-topic
+    onError: arn:aws:sns:eu-central-1:900989174731:dlq-topic
+

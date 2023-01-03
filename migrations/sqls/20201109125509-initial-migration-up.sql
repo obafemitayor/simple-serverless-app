@@ -1,4 +1,5 @@
 CREATE TABLE doctors (
+  doctor_id           BIGSERIAL PRIMARY KEY,
   name                TEXT NOT NULL,
   city                TEXT NOT NULL,
   country             TEXT NOT NULL,
@@ -8,5 +9,6 @@ CREATE TABLE doctors (
   treatments_last_year  INTEGER NOT NULL,
   years_experience     INTEGER NOT NULL,
   base_price           NUMERIC NOT NULL,
-  slug                TEXT PRIMARY KEY
+  slug                TEXT,
+  date_created        TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

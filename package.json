@@ -8,8 +8,8 @@
     "lint": "eslint 'src/**/*.ts'",
     "build": "tsc --build --verbose",
     "clean": "rm -rf ./dist",
-    "dev": "yarn build && serverless offline start --httpPort 4000 --noPrependStageInUrl --noAuth",
-    "start": "yarn dev",
+    "dev": "npm build && serverless offline start --httpPort 4000 --noPrependStageInUrl --noAuth",
+    "start": "npm dev",
     "db:migration": "db-migrate --sql-file --config ./db/config.json --migrations-dir ./db/migrations",
     "test": "jest --watchAll",
     "test:ci": "jest --ci",
@@ -20,7 +20,6 @@
     "@types/jest": "^29.2.5",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
-    "axios": "^1.2.2",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "eslint": "^8.30.0",
@@ -30,8 +29,9 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "postgresql-easy": "^1.2.5",
-    "ts-jest": "^29.0.3"
+    "pg": "^8.8.0",
+    "@types/aws-lambda": "^8.10.109",
+    "typescript": "^4.9.4"
   },
   "jest": {
     "roots": [

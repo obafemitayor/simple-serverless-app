@@ -1,9 +1,9 @@
-import { IDatabaseProvider } from "./databaseProvider";
+import { IDatabaseProvider } from "../dataproviders/database-provider";
 import { SNS } from "aws-sdk";
-import { PostDoctorModel, ResponseModel, GetDoctorResponseModel } from "./models";
-import { ValidationError } from "./validationError";
+import { PostDoctorModel, ResponseModel, GetDoctorResponseModel } from "../models/index";
+import { ValidationError } from "../validationError";
 import { APIGatewayProxyEventPathParameters } from "aws-lambda";
-import { PostgreSQLDatabaseProvider } from "./databaseProvider";
+import { PostgreSQLDatabaseProvider } from "../dataproviders/postgresql-database-provider";
 
 export class DoctorRepository{
     protected databaseProvider:IDatabaseProvider;
@@ -107,19 +107,8 @@ export class DoctorRepository{
       const sns = new SNS({ region: 'eu-central-1' })
       const params = {
         Message: JSON.stringify(doctor),
-        TopicArn: `arn:aws:sns:${process.env.region}:${process.env.accountId}:create-doctor-topic`
+        TopicArn: 'arn:aws:sns:eu-central-1:900989174731:create-doctor-topic'
       }
       return sns.publish(params).promise()
     }
-}
-
-export class MockDoctorRepository extends DoctorRepository{
-
-   async createDoctor(requestBody: string) : Promise<ResponseModel>{
-      // validate fields
-      const doctor = this.validateCreateDoctorFields(requestBody)
-      // add record to database
-      this.databaseProvider.createDoctor(doctor)
-      return {statusCode: 200, message: 'Doctor created successfully'}
-     }
 }

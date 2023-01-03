@@ -1,14 +1,14 @@
 
-import { MockDoctorRepository } from "../doctorRepo";
-import { MockDataBaseProvider } from "../databaseProvider";
+import { MockDoctorRepository } from "../_tests_/_mocks_/doctor-repository";
+import { MockDataBaseProvider } from "../_tests_/_mocks_/mock-database-provider";
 import { ValidationError } from "../validationError";
 import { APIGatewayProxyEventPathParameters } from "aws-lambda";
-import { GetDoctorModel } from "../models";
+import { GetDoctorModel } from "../models/index";
 
 const databaseProvider = new MockDataBaseProvider()
 databaseProvider.doctors = [
   {
-    id: 1,
+    doctor_id: 1,
     qunoScoreText: "",
     slug: "dr-lay-raphael",
     name: "Dr. Lay Raphael",
@@ -22,7 +22,7 @@ databaseProvider.doctors = [
     avatar_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
   },
   {
-    id: 2,
+    doctor_id: 2,
     qunoScoreText: "",
     slug: "dr-wallie-lagden",
     name: "Dr. Wallie Lagden",
@@ -36,7 +36,7 @@ databaseProvider.doctors = [
     avatar_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
   },
   {
-    id: 3,
+    doctor_id: 3,
     qunoScoreText: "",
     slug: "dr-monty-guinan",
     name: "Dr. Monty Guinan",
@@ -50,7 +50,7 @@ databaseProvider.doctors = [
     avatar_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
   },
   {
-    id: 4,
+    doctor_id: 4,
     qunoScoreText: "",
     slug: "dr-allis-outridge",
     name: "Dr. Allis Outridge",
@@ -64,7 +64,7 @@ databaseProvider.doctors = [
     avatar_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
   },
   {
-    id: 5,
+    doctor_id: 5,
     qunoScoreText: "",
     slug: "dr-cayla-loftie",
     name: "Dr. Cayla Loftie",
@@ -189,7 +189,7 @@ describe("Test Validation, Create and Retrieval Operations on Doctor Repository"
     expect(result.statusCode).toBe(200)
     const doctors = result.doctors as GetDoctorModel[]
     expect(doctors.length).toBe(6)
-    expect(doctors[5].id).toBe(6)
+    expect(doctors[5].doctor_id).toBe(6)
     expect(doctors[0].name).toBe('Dr. Lay Raphael')
     expect(doctors[0].qunoScoreText).toBe('Very Good')
     expect(doctors[1].name).toBe('Dr. Wallie Lagden')
@@ -267,7 +267,7 @@ describe("Test Validation, Create and Retrieval Operations on Doctor Repository"
     const result = await doctorRepo.getDoctor(requestQuery)
     expect(result.statusCode).toBe(200)
     const doctor = result.doctors as GetDoctorModel
-    expect(doctor.id).toBe(Number(doctorId))
+    expect(doctor.doctor_id).toBe(Number(doctorId))
     expect(doctor.name).toBe('Dr. Tayo Obafemi')
     expect(doctor.city).toBe('Lagos')
     expect(doctor.country).toBe('Nigeria')

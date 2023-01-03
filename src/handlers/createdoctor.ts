@@ -1,4 +1,4 @@
-import { PostgreSQLDatabaseProvider } from "./databaseProvider";
+import { PostgreSQLDatabaseProvider } from "../dataproviders/postgresql-database-provider";
 
 export async function create(
     event: any

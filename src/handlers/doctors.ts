@@ -1,6 +1,6 @@
 import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
-import { DoctorRepository } from "./doctorRepo";
-import { ValidationError } from "./validationError";
+import { DoctorRepository } from "../repositories/doctor-repository";
+import { ValidationError } from "../validationError";
 
 const doctorRepo = new DoctorRepository()
 
@@ -11,7 +11,7 @@ export async function getDoctors(
     const response = await doctorRepo.getDoctor(event.pathParameters)
     return {
       statusCode: response.statusCode,
-      body: JSON.stringify(response.doctors),
+      body: JSON.stringify(response),
     };
   } catch (error) {
     return {
