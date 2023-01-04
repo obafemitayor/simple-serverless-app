@@ -13,11 +13,6 @@ To set up the project locally, do the following:
 5. Move the `migrations folder`, the `seed folder` and the `database.json` file to the root directory, if you get an error while executing the above and then try the migration commands again.
 6. Run `npm start` to start the example server
 
-## Running Tests
-
-1. Run `jest index.unit.test` to run all unit tests.
-2. Run `jest index.integration.test` to run all integration tests.
-
 ## Deploying application to AWS
 
 To deploy the application to AWS Lambda Service, do the following:
@@ -37,6 +32,13 @@ To deploy the application to AWS Lambda Service, do the following:
 2. QUNO_DB_CONN_TEST: connection details for PostgreSQL database on dev environment
 3. QUNO_SCORE_MAPPING: object representing mapping that will be used to determine `qunoscoreText` of every doctor on the platform
 4. QUNOENV: test: current environment of the application. 
+
+
+## Running Tests
+
+1. Set up Environment Variables from Above on local machine or Server. This is important for all tests to pass
+1. Run `jest index.unit.test` to run all unit tests.
+2. Run `jest index.integration.test` to run all integration tests.
 
 ## Functions
 
