@@ -88,10 +88,14 @@ export class DoctorRepository{
          throw new ValidationError(400, 'Limit must be a Number')
       }
 
+      if(offset && Number(offset) < 1){
+         throw new ValidationError(400, 'Offset cannot be less than 1')
+      }
+
       if(offset && !this.isNumber(offset)){
          throw new ValidationError(400, 'Offset must be a Number')
       }
-      
+
       if(orderBy && !this.isNumber(orderBy)){
          throw new ValidationError(400, 'orderBy must be a Number')
       }

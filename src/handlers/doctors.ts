@@ -8,7 +8,13 @@ export async function getDoctors(
   event: APIGatewayEvent
 ): Promise<APIGatewayProxyResult> {
   try {
-    const response = await doctorRepo.getDoctor(event.pathParameters)
+    const params = {
+      id: event.pathParameters?.id,
+      limit: event.queryStringParameters?.limit,
+      offset: event.queryStringParameters?.offset,
+      orderBy: event.queryStringParameters?.orderBy,
+    }
+    const response = await doctorRepo.getDoctor(params)
     return {
       statusCode: response.statusCode,
       body: JSON.stringify(response),

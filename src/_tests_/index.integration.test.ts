@@ -79,7 +79,7 @@ describe("Integration Test on GET and POST doctor handlers", () => {
         offset: '1',
         orderBy: '1',
     }
-      event.pathParameters = data
+      event.queryStringParameters = data
       const response = await getDoctors(event);
       event.pathParameters = {}
       expect(response.statusCode).toEqual(200);
@@ -96,7 +96,7 @@ describe("Integration Test on GET and POST doctor handlers", () => {
         offset: '1',
         orderBy: '-1',
     }
-      event.pathParameters = data
+      event.queryStringParameters = data
       const response = await getDoctors(event);
       event.pathParameters = {}
       expect(response.statusCode).toEqual(200);
