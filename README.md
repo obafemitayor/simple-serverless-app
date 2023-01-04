@@ -24,8 +24,8 @@ To deploy the application to AWS Lambda Service, do the following:
 
 1. Change `${AWS::AccountId}` to AWS AccountID and change `${AWS::Region}` to AWS region.
 2. Change `onError: arn:aws:sns:eu-central-1:900989174731:dlq-topic` to `onError: arn:aws:sns:[aws region]:[aws accountid]:dlq-topic`.
-3. Change `[your host ip on prod]` to PostgreSQL Database Host IP for production, [your host port on prod] to port on production, [your host user on prod] to username on production, [your host user password on prod] to password on production.
-4. Change `[your host ip on dev]` to PostgreSQL Database Host IP for development, [your host port on dev] to port on development, [your host user on dev] to username on development, [your host user password on dev] to password on development.
+3. Change `[your host ip on prod]` to PostgreSQL Database Host IP on production, [your host port on prod] to port on production, [your host user on prod] to username on production, [your host user password on prod] to password on production.
+4. Change `[your host ip on dev]` to PostgreSQL Database Host IP on development, [your host port on dev] to port on development, [your host user on dev] to username on development, [your host user password on dev] to password on development.
 5. Run `tsc --build` to transpile the Typescript code to Javascript code. AWS Lambda can only run javascript code so the ts code needs to be converted to js.
 6. Run `serverless deploy` to deploy all functions and dependencies to AWS.
 7. If there is a deployment skip message and functions are not being deployed, then run `serverless deploy --stage dev --force` to do a force deployment.
