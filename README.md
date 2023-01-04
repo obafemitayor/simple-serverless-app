@@ -22,9 +22,11 @@ To set up the project locally, do the following:
 
 To deploy the application to AWS Lambda Service, do the following:
 
-1. Run `tsc --build` to transpile the Typescript code to Javascript code. AWS Lambda can only run javascript code so the ts code needs to be converted to js.
-2. Run `serverless deploy` to deploy all functions and dependencies to AWS.
-3. If there is a deployment skip message and functions are not being deployed, then run `serverless deploy --stage dev --force` to do a force deployment.
+1. Change `${AWS::AccountId}` to AWS AccountID and change `${AWS::Region}` to AWS region.
+2. Change `onError: arn:aws:sns:eu-central-1:900989174731:dlq-topic` to `onError: arn:aws:sns:[aws region]:[aws accountid]:dlq-topic`.
+3. Run `tsc --build` to transpile the Typescript code to Javascript code. AWS Lambda can only run javascript code so the ts code needs to be converted to js.
+4. Run `serverless deploy` to deploy all functions and dependencies to AWS.
+5. If there is a deployment skip message and functions are not being deployed, then run `serverless deploy --stage dev --force` to do a force deployment.
 
 ## Environment Variables
 
@@ -32,8 +34,7 @@ The following environment variables need to be set on each function after deploy
 
 1. QUNO_DB_CONN_PROD: {"database": "quno_challenge_db","host": "[your host ip on prod]","port": "[your host port on prod]","user": "[your host user on prod]","password": "[your host user password on prod]"}
 2. QUNO_DB_CONN_TEST: {"database": "quno_challenge_db","host": "[your host ip on dev]","port": "[your host port on dev]","user": "[your host user on dev]","password": "[your host user password on dev]"}
-3. QUNO_SCORE_MAPPING: {"0":"Bad","6":"Regular","7":"Good","8":"Very Good","9":"Excelent"}
-4. QUNOENV: test
+
 
 1. QUNO_DB_CONN_PROD: connection details for PostgreSQL database on production environment
 2. QUNO_DB_CONN_TEST: connection details for PostgreSQL database on dev environment

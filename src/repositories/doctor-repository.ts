@@ -106,10 +106,10 @@ export class DoctorRepository{
    }
 
      private async publishSnsTopic (doctor: PostDoctorModel) {
-      const sns = new SNS({ region: 'eu-central-1' })
+      const sns = new SNS({ region: process.env.region })
       const params = {
         Message: JSON.stringify(doctor),
-        TopicArn: 'arn:aws:sns:eu-central-1:900989174731:create-doctor-topic'
+        TopicArn: `arn:aws:sns:${process.env.region}:${process.env.accountId}:create-doctor-topic`
       }
       return sns.publish(params).promise()
     }

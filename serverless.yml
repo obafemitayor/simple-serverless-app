@@ -6,8 +6,10 @@ provider:
   region: eu-central-1
   memorySize: 128
   environment:
-    accountId: '${AWS::AccountId}'
-    region: '${AWS::Region}'
+    accountId: ${AWS::AccountId}
+    region: ${AWS::Region},
+    QUNO_SCORE_MAPPING: {"0":"Bad","6":"Regular","7":"Good","8":"Very Good","9":"Excelent"},
+    QUNOENV: test
   iamRoleStatements:
     - Effect: "Allow"
       Resource: "*"
