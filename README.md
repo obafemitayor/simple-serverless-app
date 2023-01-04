@@ -36,7 +36,7 @@ To deploy the application to AWS Lambda Service, do the following:
 
 ## Running Tests
 
-1. Set up Environment Variables from Above on local machine or Server. This is important for all tests to pass
+1. Set up Environment Variables from above on local machine or server. This is important for all tests to pass
 1. Run `jest index.unit.test` to run all unit tests.
 2. Run `jest index.integration.test` to run all integration tests.
 
