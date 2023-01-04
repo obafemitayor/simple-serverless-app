@@ -6,11 +6,11 @@ provider:
   region: eu-central-1
   memorySize: 128
   environment:
-    accountId: ${AWS::AccountId}
-    region: ${AWS::Region},
-    QUNO_DB_CONN_PROD: {"database": "quno_challenge_db","host": "[your host ip on prod]","port": "[your host port on prod]","user": "[your host user on prod]","password": "[your host user password on prod]"}
-    QUNO_DB_CONN_TEST: {"database": "quno_challenge_db","host": "[your host ip on dev]","port": "[your host port on dev]","user": "[your host user on dev]","password": "[your host user password on dev]"}
-    QUNO_SCORE_MAPPING: {"0":"Bad","6":"Regular","7":"Good","8":"Very Good","9":"Excelent"},
+    accountId: '${AWS::AccountId}'
+    region: '${AWS::Region}'
+    QUNO_DB_CONN_PROD: '{"database": "quno_challenge_db","host": "${your host ip on prod}","port": "${your host port on prod}","user": "${your host user on prod}","password": "${your host user password on prod}"}'
+    QUNO_DB_CONN_TEST: '{"database": "quno_challenge_db","host": "${your host ip on dev}","port": "${your host port on dev}","user": "${your host user on dev}","password": "${your host user password on dev}"}'
+    QUNO_SCORE_MAPPING: '{"0":"Bad","6":"Regular","7":"Good","8":"Very Good","9":"Excelent"}'
     QUNOENV: test
   iamRoleStatements:
     - Effect: "Allow"
