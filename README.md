@@ -35,6 +35,7 @@ The following environment variables need to be set on each function after deploy
 1. QUNO_DB_CONN_PROD: {"database": "quno_challenge_db","host": "[your host ip on prod]","port": "[your host port on prod]","user": "[your host user on prod]","password": "[your host user password on prod]"}
 2. QUNO_DB_CONN_TEST: {"database": "quno_challenge_db","host": "[your host ip on dev]","port": "[your host port on dev]","user": "[your host user on dev]","password": "[your host user password on dev]"}
 
+## Environment Variables Definition
 
 1. QUNO_DB_CONN_PROD: connection details for PostgreSQL database on production environment
 2. QUNO_DB_CONN_TEST: connection details for PostgreSQL database on dev environment
