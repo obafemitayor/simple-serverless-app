@@ -1,7 +1,7 @@
 export type DatabaseConfiguration = {
     database: string
     host: string,
-    port: string,
+    port: number,
     user: string,
     password: string
 }

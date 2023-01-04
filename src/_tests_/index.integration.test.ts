@@ -85,9 +85,9 @@ describe("Integration Test on GET and POST doctor handlers", () => {
       expect(response.statusCode).toEqual(200);
       const result = JSON.parse(response.body) as GetDoctorResponseModel
       const doctors = result.doctors as GetDoctorModel[]
-      expect(doctors.length).toEqual(11);
-      expect(doctors[10].name).toBe('Dr. Tayo Obafemi')
-      expect(doctors[10].qunoScoreText).toBe('Excelent')
+      expect(doctors.length).toEqual(10);
+      expect(doctors[9].name).toBe('Dr. Matthus Fitzjohn')
+      expect(doctors[9].qunoScoreText).toBe('Good')
   });
 
   it("getDoctors handler should return list of doctors from database in descending order", async () => {
@@ -102,9 +102,9 @@ describe("Integration Test on GET and POST doctor handlers", () => {
       expect(response.statusCode).toEqual(200);
       const result = JSON.parse(response.body) as GetDoctorResponseModel
       const doctors = result.doctors as GetDoctorModel[]
-      expect(doctors.length).toEqual(11);
-      expect(doctors[0].name).toBe('Dr. Tayo Obafemi')
-      expect(doctors[0].qunoScoreText).toBe('Excelent')
+      expect(doctors.length).toEqual(10);
+      expect(doctors[0].name).toBe('Dr. Lay Raphael')
+      expect(doctors[0].qunoScoreText).toBe('Very Good')
   });
 
   it("getDoctors handler should return record for doctor when an id is in request", async () => {

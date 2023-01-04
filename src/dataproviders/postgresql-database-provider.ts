@@ -3,7 +3,8 @@ import {IDatabaseProvider } from "./database-provider";
 import {getqunoScoreNumber, paginateResult } from "../helpers/helpers";
 import { databaseConfig, testDatabaseConfig } from "./config/db";
 
-const { Pool  } = require("pg")
+import pg from 'pg';
+const { Pool } = pg;
 
  export class PostgreSQLDatabaseProvider implements IDatabaseProvider{
     private databaseConfiguration : DatabaseConfiguration
@@ -38,7 +39,6 @@ const { Pool  } = require("pg")
         const allDoctors = results.rows as GetDoctorModel[];
         // Paginate Result
         const doctors = paginateResult(allDoctors, offset, limit)
-
         return [getqunoScoreNumber(doctors), allDoctors.length]
       }
     }

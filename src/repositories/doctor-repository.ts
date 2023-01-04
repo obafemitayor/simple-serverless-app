@@ -1,9 +1,11 @@
 import { IDatabaseProvider } from "../dataproviders/database-provider";
-import { SNS } from "aws-sdk";
 import { PostDoctorModel, ResponseModel, GetDoctorResponseModel } from "../models/index";
 import { ValidationError } from "../validationError";
 import { APIGatewayProxyEventPathParameters } from "aws-lambda";
 import { PostgreSQLDatabaseProvider } from "../dataproviders/postgresql-database-provider";
+import awsSdk from 'aws-sdk';
+
+const { SNS } = awsSdk;
 
 export class DoctorRepository{
     protected databaseProvider:IDatabaseProvider;
