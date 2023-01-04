@@ -38,6 +38,9 @@ functions:
       - http:
           path: /doctors/{id}
           method: GET
+      - http:
+          path: /doctors/{limit}/{offset}/{orderBy}
+          method: GET
   postDoctor:
     name: postdoctor
     handler: dist/handlers/doctors.postDoctor
