@@ -1,6 +1,4 @@
-# Tayo-Quno Backend Code Challenge
-
-This is my completed source code for the Quno code challenge.
+# Simple Serverless App Built WIth Node.js & AWS Lambda
 
 ## Setting up the project locally
 
