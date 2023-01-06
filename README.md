@@ -53,8 +53,5 @@ To deploy the application to AWS Lambda Service, do the following:
 
 3. The createDoctor functions is triggered when the postdoctor function publishes a message to a topic in SNS. This is the function that creates the record in the database.
 
-I used an asynchronous approach to ensure that the postdoctor endpoint returns a response in less than 300ms. I acheived this using a pub/sub design pattern implemented with AWS SNS.
-
-
 
 
